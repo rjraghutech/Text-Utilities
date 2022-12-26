@@ -43,34 +43,13 @@ let Textform = (props) => {
         setText(e.target.value)
     }
     //if(darkbtn === "Dark Mode"){console.log("hello")};
-    const [darkObject, setDarkObject] = useState({
-        color: "black",
-        backgroundColor: "white"
-    })
-    let darkkk = ()=>{
-        if(darkObject.color === "black"){
-            setDarkObject({
-                color: "white",
-                backgroundColor: "black"
-            })
-        }
-        else{
-            setDarkObject({
-                color: "black",
-                backgroundColor: "white"
-            })
-        }
-    }
-
     let handleCopy = () => {
         navigator.clipboard.writeText(text.valueOf());
     }
-
     let handleSpace = () => {
         console.log(text.split(/[ ]+/))
         setText(text.split(/[ ]+/).join(' '))    
     }
-
     let handleIncreaseFont = () =>{
         setFont(font+2);
     }
@@ -78,8 +57,8 @@ let Textform = (props) => {
         setFont(font-2);
     }
     return (
-        <div style={darkObject}>
-        <div className='container' style={darkObject}>
+        <div style={props.darkObject}>
+        <div className='container' style={props.darkObject}>
             <div className="mb-3">
                 <h1>{props.heading}</h1>
                 <textarea className="form-control" id="exampleFormControlTextarea1" rows="7" value={text} onChange={textareaChange} placeholder="Enter Your Text To Analyze:" style={{fontSize: `${font}px`}}/>
@@ -92,11 +71,9 @@ let Textform = (props) => {
             <button className='btn btn-primary mx-1' onClick={handleSpace}>Remove Extra Space</button>
             <button className='btn btn-primary mx-1' onClick={handleIncreaseFont}>Increase Font</button>
             <button className='btn btn-primary mx-1' onClick={handleDecreaseFont}>Decrease Font</button>
-            <button className='btn btn-primary mx-1' onClick={clearText}>Clear Text</button>
-            <button className='btn btn-primary mx-1 my-2' onClick={darkkk}>Dark Mode</button>
-            
+            <button className='btn btn-primary mx-1' onClick={clearText}>Clear Text</button>            
         </div>
-        <div className='container' style={darkObject}>
+        <div className='container' style={props.darkObject}>
             <h1>Your Text Summary:</h1>
             <p>There are {text ? text.split(" ").length : 0} words and {text.length} characters.</p>
             <p>You need {0.01 * text.split(" ").length} minutes to read.</p>
