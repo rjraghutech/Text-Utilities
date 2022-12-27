@@ -60,6 +60,9 @@ function App() {
           <Route path="/" element={<Textform heading="Text Analyzer" darkObject={darkObject} toggleMode={toggleMode} showAlert={showAlert}/>} />
         </Routes>
       </Router>
+      {/* <Header brand="Utilities" mode={mode} toggleMode={toggleMode} darkbtn={darkbtn} showAlert={showAlert} />
+      <Alert alert={alert} />
+      <Textform heading="Text Analyzer" darkObject={darkObject} toggleMode={toggleMode} showAlert={showAlert} /> */}
     </>
   );
 }
