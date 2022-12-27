@@ -1,10 +1,10 @@
-import React,{useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 let Header = (props) => {
     return (
         <>
-            <nav className={`navbar navbar-expand-lg bg-${props.mode} navbar-${props.mode}`} style={{position: 'fixed',top:'0',width:'100%'}}>
+            <nav className={`navbar navbar-expand-lg bg-${props.mode} navbar-${props.mode}`} style={{position: 'sticky',top:'0',width:'100%'}}>
                 <div className="container-fluid">
                     <a className="navbar-brand" href="/">{props.brand}</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,7 +22,7 @@ let Header = (props) => {
                         <button className={`btn mx-2 btn-outline-${props.mode === 'light'?'dark':'light'}`} type="submit" onClick={props.toggleMode}>{props.darkbtn}</button>
                         <form className="d-flex" role="search">
                             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                                <button className="btn btn-outline-success" type="submit">Search</button>
+                            <button className="btn btn-outline-success" type="submit">Search</button>
                         </form>
                     </div>
                 </div>

@@ -3,16 +3,19 @@ import React,{useState} from 'react';
 
 let Textform = (props) => {
     const [text, setText] = useState("");
-    const [font, setFont] = useState(15);
+    const [font, setFont] = useState(18);
     let upcase = () => {
         setText(text.toUpperCase());
+        props.showAlert('Coverted to Uppercase....!','success');
     }
     let lowcase = () => {
         setText(text.toLowerCase());
+        props.showAlert('Coverted to Lowercase....!','success');
     }
     let clearText = () => {
         setText('');
         setFont(15);
+        props.showAlert('Cleared Text....!','success');
     }
     let firstCapital = () => {
         let copy = text.split(' ');
@@ -21,6 +24,7 @@ let Textform = (props) => {
         }
         let copy2 = copy.join(' ');
         setText(copy2);
+        props.showAlert('Coverted to Capitalcase....!','success');
     }
     let altCase = () => {
         const isUpperCase = char => char.charCodeAt(0) >= 65 && char.charCodeAt(0)<= 90;
@@ -38,17 +42,19 @@ let Textform = (props) => {
             };
         };
         setText(newStr);  
+        props.showAlert('Coverted to Reversecase....!','success');
     }
     let textareaChange = (e) => {
         setText(e.target.value)
     }
-    //if(darkbtn === "Dark Mode"){console.log("hello")};
     let handleCopy = () => {
         navigator.clipboard.writeText(text.valueOf());
+        props.showAlert('Text Copied....!','success');
     }
     let handleSpace = () => {
         console.log(text.split(/[ ]+/))
-        setText(text.split(/[ ]+/).join(' '))    
+        setText(text.split(/[ ]+/).join(' ')) 
+        props.showAlert('Extra Space Removed....!','success');   
     }
     let handleIncreaseFont = () =>{
         setFont(font+2);
@@ -57,11 +63,11 @@ let Textform = (props) => {
         setFont(font-2);
     }
     return (
-        <div style={props.darkObject}>
+        <>
         <div className='container' style={props.darkObject}>
             <div className="mb-3">
                 <h1>{props.heading}</h1>
-                <textarea className="form-control" id="exampleFormControlTextarea1" rows="7" value={text} onChange={textareaChange} placeholder="Enter Your Text To Analyze:" style={{fontSize: `${font}px`}}/>
+                <textarea className="form-control" id="exampleFormControlTextarea1" rows="7" value={text} onChange={textareaChange} placeholder="Enter Your Text To Analyze:" style={{fontSize: `${font}px`,color: props.darkObject.color === 'white'?'white':'black',backgroundColor: props.darkObject.color === 'white'?'#3e3e3e':'white'}}/>
             </div>
             <button className='btn btn-primary mx-1' onClick={upcase}>Uppercase</button>
             <button className='btn btn-primary mx-1' onClick={lowcase}>Lowercase</button>
@@ -78,9 +84,9 @@ let Textform = (props) => {
             <p>There are {text ? text.split(" ").length : 0} words and {text.length} characters.</p>
             <p>You need {0.01 * text.split(" ").length} minutes to read.</p>
             <h2>Preview of your text:</h2>
-            <p>{text}</p>
+            <pre>{text.length === 0?'Enter Your Text To Preview':text}</pre>
         </div>
-        </div>
+        </>
     )
 }
 
