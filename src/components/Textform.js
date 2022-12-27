@@ -69,20 +69,20 @@ let Textform = (props) => {
                 <h1>{props.heading}</h1>
                 <textarea className="form-control" id="exampleFormControlTextarea1" rows="7" value={text} onChange={textareaChange} placeholder="Enter Your Text To Analyze:" style={{fontSize: `${font}px`,color: props.darkObject.color === 'white'?'white':'black',backgroundColor: props.darkObject.color === 'white'?'#3e3e3e':'white'}}/>
             </div>
-            <button className='btn btn-primary mx-1' onClick={upcase}>Uppercase</button>
-            <button className='btn btn-primary mx-1' onClick={lowcase}>Lowercase</button>
-            <button className='btn btn-primary mx-1' onClick={firstCapital}>Capital Case</button>
-            <button className='btn btn-primary mx-1' onClick={altCase}>Reverse Case</button>
-            <button className='btn btn-primary mx-1' onClick={handleCopy}>Copy Text</button>
-            <button className='btn btn-primary mx-1' onClick={handleSpace}>Remove Extra Space</button>
-            <button className='btn btn-primary mx-1' onClick={handleIncreaseFont}>Increase Font</button>
-            <button className='btn btn-primary mx-1' onClick={handleDecreaseFont}>Decrease Font</button>
-            <button className='btn btn-primary mx-1' onClick={clearText}>Clear Text</button>            
+            <button className='btn btn-primary mx-1 my-1' onClick={upcase} disabled={text.length === 0}>Uppercase</button>
+            <button className='btn btn-primary mx-1 my-1' onClick={lowcase} disabled={text.length === 0}>Lowercase</button>
+            <button className='btn btn-primary mx-1 my-1' onClick={firstCapital} disabled={text.length === 0}>Capital Case</button>
+            <button className='btn btn-primary mx-1 my-1' onClick={altCase} disabled={text.length === 0}>Reverse Case</button>
+            <button className='btn btn-primary mx-1 my-1' onClick={handleCopy} disabled={text.length === 0}>Copy Text</button>
+            <button className='btn btn-primary mx-1 my-1' onClick={handleSpace} disabled={text.length === 0}>Remove Extra Space</button>
+            <button className='btn btn-primary mx-1 my-1' onClick={handleIncreaseFont} disabled={text.length === 0}>Increase Font</button>
+            <button className='btn btn-primary mx-1 my-1' onClick={handleDecreaseFont} disabled={text.length === 0}>Decrease Font</button>
+            <button className='btn btn-primary mx-1 my-1' onClick={clearText} disabled={text.length === 0}>Clear Text</button>            
         </div>
         <div className='container' style={props.darkObject}>
             <h1>Your Text Summary:</h1>
-            <p>There are {text ? text.split(" ").length : 0} words and {text.length} characters.</p>
-            <p>You need {0.01 * text.split(" ").length} minutes to read.</p>
+            <p>There are {text.split(/\s+/).filter((element) => {return element.length !== 0}).length} words and {text.length} characters.</p>
+            <p>You need {0.01 * text.split(/\s+/).filter((element) => {return element.length !== 0}).length} minutes to read.</p>
             <h2>Preview of your text:</h2>
             <pre>{text.length === 0?'Enter Your Text To Preview':text}</pre>
         </div>
